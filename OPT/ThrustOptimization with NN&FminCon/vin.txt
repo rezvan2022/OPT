@@ -1,0 +1,6 @@
+                         "Surface Integral Report"
+
+         Average of Facet Values
+                  Axial Velocity                (m/s)
+-------------------------------- --------------------
+               mass_flow_inlet.4             496.8269

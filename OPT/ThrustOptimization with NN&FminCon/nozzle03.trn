@@ -1,0 +1,70 @@
+/ File opened for write Thu Jun 26 23:41:31 2014.
+The nozzle03 database is being opened.
+ 
+*** LISTING "nozzle03" FILES IN DIRECTORY:
+    .
+ 
+    nozzle03.lok
+Command> import vertexdata "F:\\CDnozzle\\xy_data.dat"
+WARN:  Found decimal points or 3 numbers in first line.
+Assuming raw point input.
+Command> vertex create coordinates 0.85 0 0
+Created vertex: vertex.17
+Command> vertex create coordinates 0 0 0
+Created vertex: vertex.18
+Command> edge create nurbs "vertex.16" "vertex.15" "vertex.14" "vertex.13" "vertex.12"   "vertex.11" "vertex.10" "vertex.9" "vertex.8" "vertex.7" "vertex.6"   "vertex.5" "vertex.4" "vertex.3" "vertex.2" "vertex.1" interpolate
+Created edge: edge.1
+Command> edge create straight "vertex.16" "vertex.17"
+Created edge: edge.2
+Command> edge create straight "vertex.17" "vertex.18"
+Created edge: edge.3
+Command> edge create straight "vertex.18" "vertex.1"
+Created edge: edge.4
+Command> face create wireframe "edge.2" "edge.1" "edge.4" "edge.3" real
+Created face: face.1
+Command> undo begingroup
+Command> edge delete "edge.3" keepsettings onlymesh
+Command> edge picklink "edge.3"
+Command> edge mesh "edge.3" successive ratio1 0.99 intervals 100
+Mesh generated for edge edge.3:   mesh edges = 100.
+Command> undo endgroup
+Command> undo begingroup
+Command> edge delete "edge.3" "edge.1" keepsettings onlymesh
+Mesh removed from edge edge.3:   mesh edges = 100.
+Command> edge mesh "edge.3" "edge.1" successive ratio1 0.99 intervals 100
+Mesh generated for edge edge.3:   mesh edges = 100.
+Mesh generated for edge edge.1:   mesh edges = 100.
+Command> undo endgroup
+Command> undo begingroup
+Command> edge delete "edge.4" keepsettings onlymesh
+Command> edge picklink "edge.4"
+Command> edge mesh "edge.4" lastlength ratio1 2e-05 intervals 50
+Mesh generated for edge edge.4:   mesh edges = 50.
+Command> undo endgroup
+Command> undo begingroup
+Command> edge delete "edge.2" keepsettings onlymesh
+Command> edge picklink "edge.2"
+Command> edge mesh "edge.2" firstlength ratio1 2e-05 intervals 50
+Mesh generated for edge edge.2:   mesh edges = 50.
+Command> undo endgroup
+Command> face mesh "face.1" map size 1
+Mesh generated for face face.1:   mesh faces = 5000.
+Command> physics create btype "AXIS" edge "edge.3"
+Created Boundary entity: axis.1
+Command> physics create btype "PRESSURE_OUTLET" edge "edge.2"
+Created Boundary entity: pressure_outlet.2
+Command> physics create btype "WALL" edge "edge.1"
+Created Boundary entity: wall.3
+Command> physics create btype "MASS_FLOW_INLET" edge "edge.4"
+Created Boundary entity: mass_flow_inlet.4
+Command> save
+Command> save name "nozzle03.dbs"
+Command> save
+Command> export fluent5 "nozzle03.msh" nozval
+A default (FLUID) continuum entity was created for 1 entities including the following:
+face.1 
+Mesh was successfully written to nozzle03.msh.
+Command> save
+Command> END
+/ File closed at Thu Jun 26 23:41:31 2014, 0.23 cpu second(s), 5778288 maximum memory.
+Total of 0.23 cpu second(s), 5778288 maximum memory.

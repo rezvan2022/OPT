@@ -1,0 +1,6 @@
+                         "Surface Integral Report"
+
+         Average of Facet Values
+                 Static Pressure             (pascal)
+-------------------------------- --------------------
+               mass_flow_inlet.4            484604.63

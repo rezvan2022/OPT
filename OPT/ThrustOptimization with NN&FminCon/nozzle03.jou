@@ -1,0 +1,44 @@
+/ Journal File for GAMBIT 2.4.6, Database 2.4.4, ntx86 SP2007051421
+/ Identifier "nozzle03"
+/ File opened for write Thu Jun 26 23:41:31 2014.
+identifier name "nozzle03" new nosaveprevious
+import vertexdata "F:\\CDnozzle\\xy_data.dat"
+vertex create coordinates 0.85 0 0
+vertex create coordinates 0 0 0
+edge create nurbs "vertex.16" "vertex.15" "vertex.14" "vertex.13" "vertex.12" \
+  "vertex.11" "vertex.10" "vertex.9" "vertex.8" "vertex.7" "vertex.6" \
+  "vertex.5" "vertex.4" "vertex.3" "vertex.2" "vertex.1" interpolate
+edge create straight "vertex.16" "vertex.17"
+edge create straight "vertex.17" "vertex.18"
+edge create straight "vertex.18" "vertex.1"
+face create wireframe "edge.2" "edge.1" "edge.4" "edge.3" real
+undo begingroup
+edge delete "edge.3" keepsettings onlymesh
+edge picklink "edge.3"
+edge mesh "edge.3" successive ratio1 0.99 intervals 100
+undo endgroup
+undo begingroup
+edge delete "edge.3" "edge.1" keepsettings onlymesh
+edge mesh "edge.3" "edge.1" successive ratio1 0.99 intervals 100
+undo endgroup
+undo begingroup
+edge delete "edge.4" keepsettings onlymesh
+edge picklink "edge.4"
+edge mesh "edge.4" lastlength ratio1 2e-05 intervals 50
+undo endgroup
+undo begingroup
+edge delete "edge.2" keepsettings onlymesh
+edge picklink "edge.2"
+edge mesh "edge.2" firstlength ratio1 2e-05 intervals 50
+undo endgroup
+face mesh "face.1" map size 1
+physics create btype "AXIS" edge "edge.3"
+physics create btype "PRESSURE_OUTLET" edge "edge.2"
+physics create btype "WALL" edge "edge.1"
+physics create btype "MASS_FLOW_INLET" edge "edge.4"
+save
+save name "nozzle03.dbs"
+save
+export fluent5 "nozzle03.msh" nozval
+save
+/ File closed at Thu Jun 26 23:41:31 2014, 0.23 cpu second(s), 5778288 maximum memory.
