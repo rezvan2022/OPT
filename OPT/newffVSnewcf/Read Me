@@ -1,1 +1,4 @@
 
+Testing two different neural network functions: NEWCF and NEWFF
+for airfoil shape optimization
+study the numbers of nodes effects and network type on overall performance of optimzation
